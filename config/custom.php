@@ -1,8 +1,30 @@
 <?php
+
 // custom.php file returd default configuration setting of layouts
+
+$url='http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+
+$parseUrl=parse_url($url);
+$nombre=explode("/",$parseUrl["path"])[1];
+
+    switch ($nombre) {
+        case 'admin':
+            $tema='vertical-menu-nav-dark';
+            break;
+        case 'user':
+            $tema='vertical-modern-menu';
+            break;
+        case 'moderator':
+            $tema='vertical-gradient-menu';
+            break;
+        default:
+            $tema='vertical-dark-menu';
+            break;
+    }
+
 return [
     'custom' => [
-        'mainLayoutType' => 'vertical-gradient-menu', //Options:vertical-modern-menu,vertical-menu-nav-dark,vertical-gradient-menu,vertical-dark-menu,horizontal-menu, default(vertical-modern-menu)
+        'mainLayoutType' => $tema,  //Options:vertical-modern-menu,vertical-menu-nav-dark,vertical-gradient-menu,vertical-dark-menu,horizontal-menu, default(vertical-modern-menu)
         'pageHeader' => false, //options:Boolean: false(default), true (Page Header for Breadcrumbs) Warning:if pageheader true need to define a breadcrums in controller
         'bodyCustomClass' => '', //any custom class can be pass
         'navbarLarge' => true, //options:[boolean]:true or false default(true)

@@ -1,24 +1,25 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CssController;
+use App\Http\Controllers\CardController;
+use App\Http\Controllers\FormController;
+use App\Http\Controllers\MiscController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ChartController;
+use App\Http\Controllers\MediaController;
+use App\Http\Controllers\BasicUiController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\AdvanceUiController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DataTableController;
+use App\Http\Controllers\BasicTableController;
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\UserProfileController;
-use App\Http\Controllers\PageController;
-use App\Http\Controllers\MediaController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthenticationController;
-use App\Http\Controllers\MiscController;
-use App\Http\Controllers\CardController;
-use App\Http\Controllers\CssController;
-use App\Http\Controllers\BasicUiController;
-use App\Http\Controllers\AdvanceUiController;
 use App\Http\Controllers\ExtraComponentsController;
-use App\Http\Controllers\BasicTableController;
-use App\Http\Controllers\DataTableController;
-use App\Http\Controllers\FormController;
-use App\Http\Controllers\ChartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -173,3 +174,7 @@ Route::get('/charts-sparklines', [ChartController::class, 'sparklines']);
 
 // locale route
 Route::get('lang/{locale}', [LanguageController::class, 'swap']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
